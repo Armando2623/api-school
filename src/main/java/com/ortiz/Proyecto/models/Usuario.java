@@ -1,6 +1,6 @@
 package com.ortiz.Proyecto.models;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +11,7 @@ public class Usuario {
     private Long id;
     private String nombre;
     private String usuario;
+    @JsonIgnore
     private String contraseña;
 
     @Enumerated(EnumType.STRING)
@@ -34,5 +35,22 @@ public class Usuario {
 
     public Rol getRol() {
         return rol;
+    }
+
+    // ── Setters (necesarios para DataInitializer y futuras actualizaciones) ──
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 }

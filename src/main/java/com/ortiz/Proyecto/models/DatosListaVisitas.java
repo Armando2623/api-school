@@ -2,20 +2,24 @@ package com.ortiz.Proyecto.models;
 
 import java.time.LocalDateTime;
 
+/**
+ * DTO de respuesta para listar visitas en el frontend.
+ */
 public record DatosListaVisitas(
-         String nombreVisitante,
-         String motivo,
-         LocalDateTime horaIngreso,
-         Long usuario_id,
-         EstadoRegistro estadoRegistro
-) {
-public DatosListaVisitas(RegistroVisita registro){
-this(
-registro.getNombreVisitante(),
-registro.getMotivo(),
-registro.getHoraIngreso(),
-registro.getId(),
-registro.getEstadoRegistro()
-);
-}
+        String nombreVisitante,
+        String motivo,
+        LocalDateTime horaIngreso,
+        Long usuario_id,
+        EstadoRegistro estadoRegistro) {
+    // Constructor que mapea desde la entidad RegistroVisita
+    public DatosListaVisitas(RegistroVisita registro) {
+        this(
+                registro.getNombreVisitante(),
+                registro.getMotivo(),
+                registro.getHoraIngreso(),
+                // BUG FIX: antes pasaba registro.getId() (ID de la visita) en lugar del ID del
+                // usuario
+                registro.getUsuario() != null ? registro.getUsuario().getId() : null,
+                registro.getEstadoRegistro());
+    }
 }

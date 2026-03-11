@@ -10,6 +10,6 @@ public record DatosRegistroVisita(
               @NotBlank String nombreVisitante,
               @NotBlank String motivo,
               LocalDateTime horaIngreso,
-              @NotBlank Long usuario_id,
-              @NotNull EstadoRegistro estadoRegistro) {
+              @NotNull Long usuario_id,
+              EstadoRegistro estadoRegistro) {
 }

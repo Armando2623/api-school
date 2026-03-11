@@ -1,83 +1,55 @@
 package com.ortiz.Proyecto.controller;
 
-
-import com.ortiz.Proyecto.interfaces.IORegistro;
-import com.ortiz.Proyecto.interfaces.IOUsuarios;
 import com.ortiz.Proyecto.models.DatosRegistroVisita;
-import com.ortiz.Proyecto.models.EstadoRegistro;
 import com.ortiz.Proyecto.models.RegistroVisita;
 import com.ortiz.Proyecto.models.Usuario;
+import com.ortiz.Proyecto.service.RegistroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/visitas")
 public class RegistroController {
 
     @Autowired
-    private IORegistro repository;
+    private RegistroService registroService;
 
-    @Autowired
-    private IOUsuarios usuarioRepo;
-    @Autowired
-    private IORegistro registroVisitaRepository;
-
+    /** POST /api/visitas — Registra una nueva visita */
     @PostMapping
     public ResponseEntity<RegistroVisita> registrarVisita(@RequestBody DatosRegistroVisita datosRegistro) {
-        RegistroVisita visita = new RegistroVisita(datosRegistro);
-        if (visita.getHoraIngreso() == null) {
-            visita.setHoraIngreso(LocalDateTime.now());
-        }
-        if (visita.getEstadoRegistro() == null) {
-            visita.setEstadoRegistro(EstadoRegistro.REGISTRADO);
-        }
-
-        // Fetch User
-        Usuario usuario = usuarioRepo.findById(datosRegistro.usuario_id())
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con id: " + datosRegistro.usuario_id()));
-        visita.setUsuario(usuario);
-
-        RegistroVisita saved = repository.save(visita);
-        return ResponseEntity.ok(saved);
+        return ResponseEntity.ok(registroService.registrar(datosRegistro));
     }
 
+    /** GET /api/visitas — Lista todas las visitas con usuario */
     @GetMapping
     public ResponseEntity<List<RegistroVisita>> listarVisitas() {
-        List<RegistroVisita> visitas = repository.findAll()
-                .stream()
-                .filter(v -> v.getUsuario() != null)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(visitas);
+        return ResponseEntity.ok(registroService.listar());
     }
 
+    /** GET /api/visitas/usuarios?search= — Autocompletado de "Persona a Visitar" */
     @GetMapping("/usuarios")
     public ResponseEntity<List<Usuario>> buscarUsuarios(@RequestParam String search) {
-        List<Usuario> usuarios = usuarioRepo.findAll()
-                .stream()
-                .filter(u -> u.getNombre().toLowerCase().contains(search.toLowerCase()))
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(usuarios);
+        return ResponseEntity.ok(registroService.buscarUsuarios(search));
     }
-    // En tu VisitaController (o donde tengas los endpoints de /api/visitas)
 
+    /**
+     * GET /api/visitas/visitante?dni= — Busca el último registro con ese DNI
+     * (usado como fallback antes de crear la entidad Visitante)
+     */
     @GetMapping("/visitante")
     public ResponseEntity<?> buscarVisitantePorDni(@RequestParam String dni) {
-        // Busca en la tabla de registros de visitas el visitante más reciente con ese DNI
-        Optional<RegistroVisita> visita = registroVisitaRepository
-                .findTopByDniVisitanteOrderByHoraIngresoDesc(dni);
-
-        if (visita.isEmpty()) {
-            return ResponseEntity.notFound().build(); // HTTP 404 → visitante nuevo
-        }
-
-        return ResponseEntity.ok(visita.get()); // HTTP 200 → devuelve el JSON del visitante
+        return registroService.buscarPorDni(dni)
+                .<ResponseEntity<?>>map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
+    /** PUT /api/visitas/{id} — Actualiza una visita existente */
+    @PutMapping("/{id}")
+    public ResponseEntity<RegistroVisita> actualizar(@PathVariable Long id,
+            @RequestBody DatosRegistroVisita datos) {
+        return ResponseEntity.ok(registroService.actualizar(id, datos));
+    }
 }
-
