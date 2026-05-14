@@ -1,4 +1,4 @@
-package com.ortiz.Proyecto.models;
+package com.ortiz.Proyecto.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,17 +35,15 @@ public class RegistroVisita {
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
-    public RegistroVisita(DatosRegistroVisita datosRegistroVisita){
-         this.nombreVisitante = datosRegistroVisita.nombreVisitante();
+    public RegistroVisita(com.ortiz.Proyecto.dto.DatosRegistroVisita datosRegistroVisita) {
+        this.nombreVisitante = datosRegistroVisita.nombreVisitante();
         this.dniVisitante = datosRegistroVisita.dniVisitante();
         this.motivo = datosRegistroVisita.motivo();
         this.horaIngreso = datosRegistroVisita.horaIngreso();
-        if (datosRegistroVisita.estadoRegistro() == null ) {
+        if (datosRegistroVisita.estadoRegistro() == null) {
             this.estadoRegistro = EstadoRegistro.REGISTRADO;
         }
-
-
-        this.usuario = getUsuario() ;
+        this.usuario = getUsuario();
     }
 
     public Long getId() {

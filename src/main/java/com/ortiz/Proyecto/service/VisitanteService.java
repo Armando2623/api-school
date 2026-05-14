@@ -1,7 +1,7 @@
 package com.ortiz.Proyecto.service;
 
-import com.ortiz.Proyecto.models.Visitante;
-import com.ortiz.Proyecto.models.DatosRegistroVisitante;
+import com.ortiz.Proyecto.domain.Visitante;
+import com.ortiz.Proyecto.dto.DatosRegistroVisitante;
 import com.ortiz.Proyecto.repository.VisitanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

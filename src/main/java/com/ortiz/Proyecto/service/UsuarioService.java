@@ -1,13 +1,14 @@
 package com.ortiz.Proyecto.service;
 
-import com.ortiz.Proyecto.models.DatosRegistroUsuario;
-import com.ortiz.Proyecto.models.Usuario;
+import com.ortiz.Proyecto.domain.Usuario;
+import com.ortiz.Proyecto.dto.DatosRegistroUsuario;
 import com.ortiz.Proyecto.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -19,8 +20,7 @@ public class UsuarioService {
     private PasswordEncoder passwordEncoder;
 
     /**
-     * Lista todos los usuarios (sin contraseña — el @JsonIgnore en el modelo la
-     * oculta)
+     * Lista todos los usuarios (sin contraseña — el @JsonIgnore en el modelo la oculta)
      */
     public List<Usuario> listarTodos() {
         return usuarioRepository.findAll();
@@ -71,5 +71,13 @@ public class UsuarioService {
     /** Elimina un usuario por ID */
     public void eliminar(Long id) {
         usuarioRepository.deleteById(id);
+    }
+
+    /**
+     * Busca un usuario por su nombre de usuario (login).
+     * Usado por AuthController para obtener los datos del usuario autenticado.
+     */
+    public Optional<Usuario> buscarPorUsername(String username) {
+        return usuarioRepository.findByUsuario(username);
     }
 }

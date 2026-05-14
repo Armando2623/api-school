@@ -1,9 +1,9 @@
 package com.ortiz.Proyecto.service;
 
-import com.ortiz.Proyecto.models.EstadoRegistro;
-import com.ortiz.Proyecto.models.RegistroVisita;
-import com.ortiz.Proyecto.models.DatosRegistroVisita;
-import com.ortiz.Proyecto.models.Usuario;
+import com.ortiz.Proyecto.domain.EstadoRegistro;
+import com.ortiz.Proyecto.domain.RegistroVisita;
+import com.ortiz.Proyecto.domain.Usuario;
+import com.ortiz.Proyecto.dto.DatosRegistroVisita;
 import com.ortiz.Proyecto.repository.RegistroRepository;
 import com.ortiz.Proyecto.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,8 +62,7 @@ public class RegistroService {
     }
 
     /**
-     * Lista todos los usuarios registrados (para el autocompletado de "Persona a
-     * Visitar").
+     * Lista todos los usuarios registrados (para el autocompletado de "Persona a Visitar").
      */
     public List<Usuario> buscarUsuarios(String search) {
         return usuarioRepository.findAll()

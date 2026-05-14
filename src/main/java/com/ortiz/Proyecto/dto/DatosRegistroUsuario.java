@@ -1,4 +1,6 @@
-package com.ortiz.Proyecto.models;
+package com.ortiz.Proyecto.dto;
+
+import com.ortiz.Proyecto.domain.Rol;
 
 /**
  * DTO para registrar un nuevo usuario del sistema.

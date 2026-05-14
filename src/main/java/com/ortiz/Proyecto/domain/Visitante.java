@@ -1,4 +1,4 @@
-package com.ortiz.Proyecto.models;
+package com.ortiz.Proyecto.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

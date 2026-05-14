@@ -1,8 +1,8 @@
 package com.ortiz.Proyecto.controller;
 
-import com.ortiz.Proyecto.models.DatosRegistroVisita;
-import com.ortiz.Proyecto.models.RegistroVisita;
-import com.ortiz.Proyecto.models.Usuario;
+import com.ortiz.Proyecto.domain.RegistroVisita;
+import com.ortiz.Proyecto.domain.Usuario;
+import com.ortiz.Proyecto.dto.DatosRegistroVisita;
 import com.ortiz.Proyecto.service.RegistroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package com.ortiz.Proyecto.config;
 
-import com.ortiz.Proyecto.models.Rol;
-import com.ortiz.Proyecto.models.Usuario;
+import com.ortiz.Proyecto.domain.Rol;
+import com.ortiz.Proyecto.domain.Usuario;
 import com.ortiz.Proyecto.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
  * solo si aún no existe ningún usuario con ese username.
  *
  * Credenciales iniciales:
- * usuario: admin
- * contraseña: admin123
+ *   usuario: admin
+ *   contraseña: admin123
  *
  * ¡Cambia la contraseña después del primer inicio de sesión!
  */

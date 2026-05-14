@@ -1,7 +1,7 @@
 package com.ortiz.Proyecto.controller;
 
-import com.ortiz.Proyecto.models.DatosRegistroUsuario;
-import com.ortiz.Proyecto.models.Usuario;
+import com.ortiz.Proyecto.domain.Usuario;
+import com.ortiz.Proyecto.dto.DatosRegistroUsuario;
 import com.ortiz.Proyecto.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +14,10 @@ import java.util.Map;
  * Endpoints de gestión de usuarios del sistema.
  * Todos requieren rol ADMINISTRADOR (configurado en SecurityConfig).
  *
- * GET /api/usuarios → lista todos
- * POST /api/usuarios → crea uno nuevo
- * PUT /api/usuarios/{id} → actualiza nombre, usuario, rol y (opcional)
- * contraseña
- * DELETE /api/usuarios/{id} → elimina por ID
+ * GET  /api/usuarios         → lista todos
+ * POST /api/usuarios         → crea uno nuevo
+ * PUT  /api/usuarios/{id}    → actualiza nombre, usuario, rol y (opcional) contraseña
+ * DELETE /api/usuarios/{id}  → elimina por ID
  */
 @RestController
 @RequestMapping("/api/usuarios")

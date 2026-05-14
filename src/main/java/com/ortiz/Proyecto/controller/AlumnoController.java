@@ -1,7 +1,7 @@
 package com.ortiz.Proyecto.controller;
 
-import com.ortiz.Proyecto.models.Alumno;
-import com.ortiz.Proyecto.models.DatosRegistroAlumno;
+import com.ortiz.Proyecto.domain.Alumno;
+import com.ortiz.Proyecto.dto.DatosRegistroAlumno;
 import com.ortiz.Proyecto.service.AlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

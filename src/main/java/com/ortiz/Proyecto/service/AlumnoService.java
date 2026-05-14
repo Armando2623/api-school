@@ -1,12 +1,11 @@
 package com.ortiz.Proyecto.service;
 
-import com.ortiz.Proyecto.models.Alumno;
-import com.ortiz.Proyecto.models.DatosRegistroAlumno;
-import com.ortiz.Proyecto.models.Visitante;
+import com.ortiz.Proyecto.domain.Alumno;
+import com.ortiz.Proyecto.domain.Visitante;
+import com.ortiz.Proyecto.dto.DatosRegistroAlumno;
 import com.ortiz.Proyecto.repository.AlumnoRepository;
 import com.ortiz.Proyecto.repository.VisitanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.ortiz.Proyecto.models;
+package com.ortiz.Proyecto.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -6,17 +6,22 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nombre;
+
     private String usuario;
+
     @JsonIgnore
     private String contraseña;
 
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
+    // ── Getters ───────────────────────────────────────────────
     public Long getId() {
         return id;
     }

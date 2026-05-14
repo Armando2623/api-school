@@ -1,4 +1,7 @@
-package com.ortiz.Proyecto.models;
+package com.ortiz.Proyecto.dto;
+
+import com.ortiz.Proyecto.domain.EstadoRegistro;
+import com.ortiz.Proyecto.domain.RegistroVisita;
 
 import java.time.LocalDateTime;
 
@@ -11,14 +14,13 @@ public record DatosListaVisitas(
         LocalDateTime horaIngreso,
         Long usuario_id,
         EstadoRegistro estadoRegistro) {
+
     // Constructor que mapea desde la entidad RegistroVisita
     public DatosListaVisitas(RegistroVisita registro) {
         this(
                 registro.getNombreVisitante(),
                 registro.getMotivo(),
                 registro.getHoraIngreso(),
-                // BUG FIX: antes pasaba registro.getId() (ID de la visita) en lugar del ID del
-                // usuario
                 registro.getUsuario() != null ? registro.getUsuario().getId() : null,
                 registro.getEstadoRegistro());
     }

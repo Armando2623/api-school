@@ -1,6 +1,7 @@
-package com.ortiz.Proyecto.models;
+package com.ortiz.Proyecto.domain;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 /**

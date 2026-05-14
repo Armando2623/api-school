@@ -1,6 +1,6 @@
 package com.ortiz.Proyecto.repository;
 
-import com.ortiz.Proyecto.models.Mensaje;
+import com.ortiz.Proyecto.domain.Mensaje;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -28,8 +28,7 @@ public interface MensajeRepository extends JpaRepository<Mensaje, Long> {
     long countByDestinatarioAndLeidoFalse(String destinatario);
 
     /**
-     * Marca como leídos todos los mensajes enviados por 'remitente' a
-     * 'destinatario'.
+     * Marca como leídos todos los mensajes enviados por 'remitente' a 'destinatario'.
      */
     @Modifying
     @Transactional

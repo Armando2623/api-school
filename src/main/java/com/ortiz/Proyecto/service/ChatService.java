@@ -1,6 +1,6 @@
 package com.ortiz.Proyecto.service;
 
-import com.ortiz.Proyecto.models.Mensaje;
+import com.ortiz.Proyecto.domain.Mensaje;
 import com.ortiz.Proyecto.repository.MensajeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

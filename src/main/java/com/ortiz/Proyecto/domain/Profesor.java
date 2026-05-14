@@ -1,4 +1,4 @@
-package com.ortiz.Proyecto.models;
+package com.ortiz.Proyecto.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,29 +7,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "portero")
+@Table(name = "profesor")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Portero {
+public class Profesor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private Turno turno;
+    private String especialidad;
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-
-
-    public Portero(Turno turno, Usuario usuario) {
-        this.turno = turno;
+    public Profesor(String especialidad, Usuario usuario) {
+        this.especialidad = especialidad;
         this.usuario = usuario;
     }
 }

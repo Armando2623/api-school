@@ -1,4 +1,4 @@
-package com.ortiz.Proyecto.models;
+package com.ortiz.Proyecto.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,8 +26,7 @@ public class Alumno {
 
     /**
      * Apoderado (padre/madre/tutor) del alumno.
-     * Nullable para no romper alumnos ya existentes que no tienen apoderado
-     * asignado.
+     * Nullable para no romper alumnos ya existentes que no tienen apoderado asignado.
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "visitante_id", nullable = true)

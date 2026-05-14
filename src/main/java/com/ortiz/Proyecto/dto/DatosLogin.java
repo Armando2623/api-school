@@ -1,4 +1,4 @@
-package com.ortiz.Proyecto.models;
+package com.ortiz.Proyecto.dto;
 
 /**
  * DTO recibido en POST /api/auth/login

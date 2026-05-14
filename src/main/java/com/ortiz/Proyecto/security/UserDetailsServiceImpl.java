@@ -1,6 +1,6 @@
 package com.ortiz.Proyecto.security;
 
-import com.ortiz.Proyecto.models.Usuario;
+import com.ortiz.Proyecto.domain.Usuario;
 import com.ortiz.Proyecto.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

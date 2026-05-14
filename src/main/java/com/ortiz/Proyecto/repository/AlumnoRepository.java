@@ -1,6 +1,6 @@
 package com.ortiz.Proyecto.repository;
 
-import com.ortiz.Proyecto.models.Alumno;
+import com.ortiz.Proyecto.domain.Alumno;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.ortiz.Proyecto.controller;
 
-import com.ortiz.Proyecto.models.Mensaje;
+import com.ortiz.Proyecto.domain.Mensaje;
 import com.ortiz.Proyecto.service.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
